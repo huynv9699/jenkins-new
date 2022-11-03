@@ -5,6 +5,7 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
+            sh 'docker run -d pythonApp .'
             sh 'echo "building the repo"'
           }
         }
