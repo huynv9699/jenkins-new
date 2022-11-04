@@ -5,7 +5,6 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            // sh 'docker run -d pythonapp .'
             sh 'echo "building the repo"'
           }
         }
@@ -14,7 +13,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'python3 test_app.py'
+        sh 'python test_app.py'
         input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
       }
     }
