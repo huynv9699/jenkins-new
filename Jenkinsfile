@@ -13,7 +13,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'python test_app.py'
+        sh 'python3 test_app.py'
         input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
       }
     }
@@ -33,7 +33,6 @@ pipeline {
             junit allowEmptyResults: true, testResults:'**/test_reports/*.xml'
         }
         success {
-            
             sh "sudo nohup python3 app.py > log.txt 2>&1 &"
             echo "Flask Application Up and running!!"
         }
